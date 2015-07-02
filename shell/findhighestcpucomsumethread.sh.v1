@@ -1,0 +1,8 @@
+#!/bin/bash
+TIDD=$(top -n1 -H | grep -m1 java | perl -pe 's/\e\[?.*?[\@-~] ?//g' | cut -f1 -d' ')
+echo 'TIDD' $TIDD
+TIDH=$(printf "%x" $TIDD)
+echo 'TIDH' $TIDH
+PID=$(ps -aefL | grep java | grep $TIDD | awk '{print $3}')
+echo 'PID' $PID
+jstack $PID | grep -A500 $TIDH | grep -m1 "^$" -B 500
