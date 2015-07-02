@@ -52,7 +52,7 @@ class EmailSend(object):
         print 'send email successful!'
 
     def write_email(self):
-        attach_path = '/Users/ben/PycharmProjects/jvmMonitorAnalyze/log'
+        attach_path = '/Users/ben/PycharmProjects/jvmMonitorAnalyze/logs'
         attach_files = [join(attach_path,f) for f in listdir(attach_path) if isfile(join(attach_path, f))]
         self.send_email('server upload monitor', 'this is a email send by ptyhon', attach_files)
 
