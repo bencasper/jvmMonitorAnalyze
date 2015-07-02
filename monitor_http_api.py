@@ -1,3 +1,4 @@
+import os
 import urllib
 import time
 import logging
@@ -27,11 +28,15 @@ class APIMonitor:
                 response_time = (end - start) * 1000
                 logger.info('response time for api %s is %d ms,start at %f end at %f', url, response_time, start, end)
                 if response_time > threshold:
-                    # trigger the analyze sript and send email
-                    pass
+                    """ do the analyze and send email """
+                    os.system('shell/findhighestcpucomsumethread.sh')
+                    os.system('shell/findhighestcpucomsumethread.sh')
             except:
                 urllib.ContentTooShortError
-                # trigger the analyze script and send email
+                """ do the analyze and send email """
+                os.system('shell/findhighestcpucomsumethread.sh')
+                os.system('shell/findhighestcpucomsumethread.sh')
+
 
 
 APIMonitor().do_monitor()

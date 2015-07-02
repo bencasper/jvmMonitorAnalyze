@@ -1,5 +1,5 @@
 #!/bin/bash
-LOG_FILE='../logs/analyzeLog.log'
+LOG_FILE='/letv/logs/monitor/jvmdump.log'
 TIDDS=$(top -n5 -H | grep -m5 java | perl -pe 's/\e\[?.*?[\@-~] ?//g' | cut -f1 -d' ')
 tidd_arr=($TIDDS)
 echo 'highest cpu consume threads info:'$(date) > $LOG_FILE
