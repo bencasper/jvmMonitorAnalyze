@@ -29,7 +29,8 @@ class UptimeMonitor:
         proc_info = split("load average:", line)
         uptime = proc_info[1]
         # commas on linux and blank on osx
-        nearly_uptime = split(",", uptime)[1]
+        nearly_uptime = float(split(",", uptime)[0])
+        logger.debug('nearly_uptime is %f',nearly_uptime)
         # print nearly_uptime
         if nearly_uptime > uploadThreshold:
             """ do analyze """
