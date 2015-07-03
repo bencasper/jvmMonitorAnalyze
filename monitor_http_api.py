@@ -6,9 +6,14 @@ from conf_parse import parse_conf
 
 __author__ = 'ben'
 
+logPath = '/letv/logs/monitor'
+fileName = 'jvmdump'
+logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 logger = logging.getLogger(__name__)
+fileHandler = logging.FileHandler("{0}/{1}.log".format(logPath, fileName))
+fileHandler.setFormatter(logFormatter)
+logger.addHandler(fileHandler)
 logger.setLevel(logging.INFO)
-logging.basicConfig()
 threshold = 50  # threshold is 50ms
 
 
