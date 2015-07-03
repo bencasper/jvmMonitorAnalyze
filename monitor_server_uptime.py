@@ -20,7 +20,7 @@ class UptimeMonitor:
         nearly_uptime = split(" ", uptime)[1]
         print nearly_uptime
         if nearly_uptime > uploadThreshold:
-            """ do the analyze and send email """
+            """ do analyze """
             os.system('shell/findhighestcpucomsumethread.sh')
             os.system('shell/findhighestcpucomsumethread.sh')
 
