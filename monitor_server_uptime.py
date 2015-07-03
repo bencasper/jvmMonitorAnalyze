@@ -28,7 +28,8 @@ class UptimeMonitor:
         # average on linux  and averages on osx
         proc_info = split("load average:", line)
         uptime = proc_info[1]
-        nearly_uptime = split(" ", uptime)[1]
+        # commas on linux and blank on osx
+        nearly_uptime = split(",", uptime)[1]
         # print nearly_uptime
         if nearly_uptime > uploadThreshold:
             """ do analyze """
