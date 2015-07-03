@@ -2,7 +2,7 @@
 LOG_FILE='/letv/logs/monitor/jvmdump.log'
 TIDDS=$(top -n5 -H | grep -m5 java | perl -pe 's/\e\[?.*?[\@-~] ?//g' | cut -f1 -d' ')
 tidd_arr=($TIDDS)
-echo 'highest cpu consume threads info:'$(date) > $LOG_FILE
+echo 'highest cpu consume threads info:'$(date) >> $LOG_FILE
 for TIDD in "${tidd_arr[@]}"
 do
 	echo 'TIDD' $TIDD >> $LOG_FILE
