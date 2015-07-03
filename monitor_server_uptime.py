@@ -2,9 +2,11 @@ import logging
 import os
 from subprocess import Popen, PIPE
 from re import split
+from conf_parse import mk_log_dir
 
 __author__ = 'ben'
 uploadThreshold = 10  # set linux upload threshold to 10
+mk_log_dir()
 logPath = '/letv/logs/monitor'
 fileName = 'jvmdump'
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
@@ -38,5 +40,6 @@ class UptimeMonitor:
             os.system('shell/findhighestramcomsumethread.sh')
 
 
-UptimeMonitor().do_monitor()
+if __name__ == "__main__":
+    UptimeMonitor().do_monitor()
 

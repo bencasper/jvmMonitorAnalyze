@@ -17,3 +17,12 @@ def parse_conf():
     with open(conf_file, 'r') as conf:
         conf_json = json.load(conf, 'utf-8')
         return conf_json
+
+
+def mk_log_dir():
+    log_path = '/letv/logs/monitor'
+    log_file = 'jvmdump.log'
+    if os.path.isdir(log_path):
+        pass
+    else:
+        os.mkdir(log_path)

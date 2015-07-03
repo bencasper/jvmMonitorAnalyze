@@ -2,10 +2,10 @@ import os
 import urllib
 import time
 import logging
-from conf_parse import parse_conf
+from conf_parse import parse_conf, mk_log_dir
 
 __author__ = 'ben'
-
+mk_log_dir()
 logPath = '/letv/logs/monitor'
 fileName = 'jvmdump'
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
@@ -51,8 +51,8 @@ class APIMonitor:
                 os.system('shell/findhighestramcomsumethread.sh')
 
 
-
-APIMonitor().do_monitor()
+if __name__ == "__main__":
+    APIMonitor().do_monitor()
 
 
 

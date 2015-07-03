@@ -8,11 +8,11 @@ from os import listdir
 from os.path import isfile, join, basename
 from time import strftime, gmtime
 
-from conf_parse import parse_conf
+from conf_parse import parse_conf, mk_log_dir
 
 
 __author__ = 'ben'
-
+mk_log_dir()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logging.basicConfig()
@@ -67,4 +67,5 @@ class EmailSend(object):
         logger.info("send email at %s",strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 
-EmailSend().write_email()
+if __name__ == "__main__":
+    EmailSend().write_email()
