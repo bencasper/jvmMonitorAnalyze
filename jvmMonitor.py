@@ -8,5 +8,5 @@ __author__ = 'ben'
 if __name__  == "__main__":
     APIMonitor().do_monitor()
     UptimeMonitor().do_monitor()
-    EmailSend.write_email()
+    EmailSend().write_email()
 

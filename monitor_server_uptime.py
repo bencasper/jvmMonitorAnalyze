@@ -25,7 +25,7 @@ class UptimeMonitor:
         line = sub_proc.stdout.readline()
         # The separator for splitting is 'variable number of spaces'
         logger.info('uptime is :\n %s',line)
-        proc_info = split("load averages:", line)
+        proc_info = split("load\ averages:", line)
         uptime = proc_info[1]
         nearly_uptime = split(" ", uptime)[1]
         # print nearly_uptime

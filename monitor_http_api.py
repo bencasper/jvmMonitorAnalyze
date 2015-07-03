@@ -38,12 +38,12 @@ class APIMonitor:
                 if response_time > threshold:
                     """ do analyze """
                     os.system('shell/findhighestcpucomsumethread.sh')
-                    os.system('shell/findhighestcpucomsumethread.sh')
+                    os.system('shell/findhighestramcomsumethread.sh')
             except:
                 urllib.ContentTooShortError
                 """ do analyze """
                 os.system('shell/findhighestcpucomsumethread.sh')
-                os.system('shell/findhighestcpucomsumethread.sh')
+                os.system('shell/findhighestramcomsumethread.sh')
 
 
 
