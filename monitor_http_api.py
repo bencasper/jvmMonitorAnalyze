@@ -43,8 +43,7 @@ class APIMonitor:
                 if response_time > threshold:
                     return True
 
-            except:
-                urllib.ContentTooShortError
+            except urllib.ContentTooShortError:
                 return True
 
 
