@@ -2,7 +2,7 @@ from inspect import getsourcefile
 import json
 import logging
 import os
-from os.path import join, abspath, split
+from os.path import join, split
 
 __author__ = 'ben'
 
@@ -26,12 +26,16 @@ def parse_conf():
 
 def mk_log_dir():
     log_path = '/letv/logs/monitor'
-    log_file = 'jvmdump.log'
     if os.path.isdir(log_path):
         pass
     else:
         os.mkdir(log_path)
 
+
+def get_log_file():
+    log_path = '/letv/logs/monitor'
+    log_file = 'jvmdump'
+    return "{0}/{1}.log".format(log_path, log_file)
 
 if __name__ == "__main__":
     parse_conf()

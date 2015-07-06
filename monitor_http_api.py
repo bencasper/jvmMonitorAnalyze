@@ -1,16 +1,16 @@
-import os
 import urllib
 import time
 import logging
-from conf_parse import parse_conf, mk_log_dir
+
+from file_utils import parse_conf, mk_log_dir, get_log_file
+
 
 __author__ = 'ben'
 mk_log_dir()
-logPath = '/letv/logs/monitor'
-fileName = 'jvmdump'
+
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 logger = logging.getLogger(__name__)
-fileHandler = logging.FileHandler("{0}/{1}.log".format(logPath, fileName))
+fileHandler = logging.FileHandler(get_log_file())
 fileHandler.setFormatter(logFormatter)
 logger.addHandler(fileHandler)
 logger.setLevel(logging.INFO)
@@ -41,14 +41,11 @@ class APIMonitor:
                 response_time = (end - start) * 1000
                 logger.info('response time for api %s is %d ms,start at %f end at %f', url, response_time, start, end)
                 if response_time > threshold:
-                    """ do analyze """
-                    os.system('shell/findhighestcpucomsumethread.sh')
-                    os.system('shell/findhighestramcomsumethread.sh')
+                    return True
+
             except:
                 urllib.ContentTooShortError
-                """ do analyze """
-                os.system('shell/findhighestcpucomsumethread.sh')
-                os.system('shell/findhighestramcomsumethread.sh')
+                return True
 
 
 if __name__ == "__main__":

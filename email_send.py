@@ -8,7 +8,7 @@ from os import listdir
 from os.path import isfile, join, basename
 from time import strftime, gmtime
 
-from conf_parse import parse_conf, mk_log_dir
+from file_utils import parse_conf, mk_log_dir
 
 
 __author__ = 'ben'

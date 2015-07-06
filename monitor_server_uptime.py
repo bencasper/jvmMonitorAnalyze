@@ -1,17 +1,16 @@
 import logging
-import os
 from subprocess import Popen, PIPE
 from re import split
-from conf_parse import mk_log_dir
+
+from file_utils import mk_log_dir, get_log_file
+
 
 __author__ = 'ben'
-uploadThreshold = 10  # set linux upload threshold to 10
+uploadThreshold = 30  # set linux upload threshold to 30
 mk_log_dir()
-logPath = '/letv/logs/monitor'
-fileName = 'jvmdump'
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 logger = logging.getLogger(__name__)
-fileHandler = logging.FileHandler("{0}/{1}.log".format(logPath, fileName))
+fileHandler = logging.FileHandler(get_log_file())
 fileHandler.setFormatter(logFormatter)
 logger.addHandler(fileHandler)
 logger.setLevel(logging.INFO)
@@ -35,9 +34,7 @@ class UptimeMonitor:
         logger.debug('nearly_uptime is %f',nearly_uptime)
         # print nearly_uptime
         if nearly_uptime > uploadThreshold:
-            """ do analyze """
-            os.system('shell/findhighestcpucomsumethread.sh')
-            os.system('shell/findhighestramcomsumethread.sh')
+            return True
 
 
 if __name__ == "__main__":
