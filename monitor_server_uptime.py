@@ -2,12 +2,11 @@ import logging
 from subprocess import Popen, PIPE
 from re import split
 
-from file_utils import mk_log_dir, get_log_file
+from file_utils import get_log_file
 
 
 __author__ = 'ben'
 uploadThreshold = 30  # set linux upload threshold to 30
-mk_log_dir()
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 logger = logging.getLogger(__name__)
 fileHandler = logging.FileHandler(get_log_file())

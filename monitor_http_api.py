@@ -2,12 +2,10 @@ import urllib
 import time
 import logging
 
-from file_utils import parse_conf, mk_log_dir, get_log_file
+from file_utils import parse_conf, get_log_file
 
 
 __author__ = 'ben'
-mk_log_dir()
-
 logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
 logger = logging.getLogger(__name__)
 fileHandler = logging.FileHandler(get_log_file())

@@ -8,7 +8,7 @@ do
         echo 'TIDD' $TIDD >> $LOG_FILE
         TIDH=$(printf "%x" $TIDD)
         echo 'TIDH' $TIDH >> $LOG_FILE
-        PID=$(ps -aefL | grep java | grep -m1 $TIDD | awk '{print $3}')
+        PID=$(ps -aefL | grep java | grep -m1 ${TIDD} | awk '{print $3}')
         echo 'PID' $PID >> $LOG_FILE
         jstack $PID | grep -A500 $TIDH | grep -m1 "^$" -B 500 >> $LOG_FILE
 done

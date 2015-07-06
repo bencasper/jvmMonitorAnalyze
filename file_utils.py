@@ -35,7 +35,9 @@ def mk_log_dir():
 def get_log_file():
     log_path = '/letv/logs/monitor'
     log_file = 'jvmdump'
-    return "{0}/{1}.log".format(log_path, log_file)
+    log_file_abs = "{0}/{1}.log".format(log_path, log_file)
+    logger.info('abs of log file is %s',log_file_abs)
+    return log_file_abs
 
 if __name__ == "__main__":
     parse_conf()

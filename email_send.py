@@ -6,7 +6,9 @@ import logging
 import smtplib
 from os import listdir
 from os.path import isfile, join, basename
+import socket
 from time import strftime, gmtime
+import subprocess
 
 from file_utils import parse_conf, mk_log_dir
 
@@ -16,6 +18,18 @@ mk_log_dir()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logging.basicConfig()
+
+
+def get_email_content(content_file):
+    with open(content_file, 'r') as fil:
+        return fil.read().replace('\n', '')
+
+
+def get_host_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("gmail.com", 80))
+    ip_addr = s.getsockname()[0]
+    return ip_addr
 
 
 class EmailSend(object):
@@ -62,9 +76,17 @@ class EmailSend(object):
 
     def write_email(self):
         attach_path = '/letv/logs/monitor'
-        attach_files = [join(attach_path, f) for f in listdir(attach_path) if isfile(join(attach_path, f))]
-        self.send_email('server upload monitor', 'this is a email send by ptyhon', attach_files)
-        logger.info("send email at %s",strftime("%Y-%m-%d %H:%M:%S", gmtime()))
+        content_filename = 'jvmdump.log'
+        attach_files = [join(attach_path, f) for f in listdir(attach_path) if
+                        isfile(join(attach_path, f)) and f != content_filename]
+
+        ip_addr = get_host_ip()
+        logger.info('server ip is: %s', ip_addr)
+        email_subject = 'server('+ip_addr +') jvm monitor'
+        content_file = join(attach_path,content_filename)
+        email_content = get_email_content(content_file)
+        self.send_email(email_subject, email_content, attach_files)
+        logger.info("send email %s  at %s", email_subject, strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 
 
 if __name__ == "__main__":
