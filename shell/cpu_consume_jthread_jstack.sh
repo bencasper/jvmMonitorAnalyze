@@ -16,9 +16,9 @@ else
 	TID=$1
 fi
 echo 'thead id:'${TID}
-TIDHEX=$(printf "%x" $TID)
+TIDHEX=$(printf "%x" ${TID})
 echo 'thead id in hex:' ${TIDHEX}
-PID=$(ps -aefL | grep java | grep $TID | awk '{print $2}')
+PID=$(ps -aefL | grep java | grep ${TID} | awk '{print $2}')
 echo 'associate pid:' ${PID}
 source /etc/profile
 jstack ${PID} | grep -A500 ${TIDHEX} | grep -m1 "^$" -B 500
